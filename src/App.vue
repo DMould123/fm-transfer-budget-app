@@ -4,6 +4,7 @@
     <Balance />
     <IncomeOutgoings />
     <TransfersList />
+    <AddTransfer />
   </div>
 </template>
 
@@ -12,12 +13,14 @@
   import Balance from './components/Balance.vue'
   import IncomeOutgoings from './components/IncomeOutgoings.vue'
   import TransfersList from './components/TransfersList.vue'
+  import AddTransfer from './components/AddTransfer.vue'
   export default {
     components: {
       Header,
       Balance,
       IncomeOutgoings,
-      TransfersList
+      TransfersList,
+      AddTransfer
     }
   }
 </script>

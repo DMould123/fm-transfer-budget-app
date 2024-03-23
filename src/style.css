@@ -44,7 +44,7 @@ h4 {
   color: #444;
 }
 
-.inc-exp-container {
+.inc-out-container {
   background-color: #fff;
   box-shadow: var(--box-shadow);
   padding: 20px;
@@ -53,12 +53,12 @@ h4 {
   margin: 20px 0;
 }
 
-.inc-exp-container > div {
+.inc-out-container > div {
   flex: 1;
   text-align: center;
 }
 
-.inc-exp-container > div:first-of-type {
+.inc-out-container > div:first-of-type {
   border-right: 1px solid #ddd;
 }
 
@@ -82,7 +82,7 @@ label {
   color: #555;
 }
 
-input[type='text'],
+input[type='player'],
 input[type='number'] {
   border: 1px solid #ccc;
   border-radius: 2px;
