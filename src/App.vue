@@ -40,7 +40,10 @@
       .reduce((acc, transfer) => {
         return acc + transfer.amount
       }, 0)
-      .toFixed(2)
+      .toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
   })
 
   // Get transfer outgoings
@@ -50,6 +53,9 @@
       .reduce((acc, transfer) => {
         return acc + transfer.amount
       }, 0)
-      .toFixed(2)
+      .toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
   })
 </script>
