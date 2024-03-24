@@ -1,7 +1,7 @@
 <template>
   <Header />
   <div class="container">
-    <Balance />
+    <Balance :total="total" />
     <IncomeOutgoings />
     <TransfersList :transfers="transfers" />
     <AddTransfer />
@@ -15,7 +15,7 @@
   import TransfersList from './components/TransfersList.vue'
   import AddTransfer from './components/AddTransfer.vue'
 
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
 
   const transfers = ref([
     { id: 1, name: 'Cristiano Ronaldo', amount: 100000000.0 },
@@ -25,4 +25,10 @@
     { id: 5, name: 'Kevin De Bruyne', amount: 90000000.0 },
     { id: 6, name: 'Virgil van Dijk', amount: -85000000.69 }
   ])
+
+  const total = computed(() => {
+    return transfers.value.reduce((acc, transfer) => {
+      return acc + transfer.amount
+    }, 0)
+  })
 </script>
