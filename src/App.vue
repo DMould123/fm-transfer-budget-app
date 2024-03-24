@@ -2,7 +2,7 @@
   <Header />
   <div class="container">
     <Balance :total="total" />
-    <IncomeOutgoings />
+    <IncomeOutgoings :income="income" :outgoings="outgoings" />
     <TransfersList :transfers="transfers" />
     <AddTransfer />
   </div>
@@ -26,9 +26,30 @@
     { id: 6, name: 'Virgil van Dijk', amount: -85000000.69 }
   ])
 
+  // Get total transfers
   const total = computed(() => {
     return transfers.value.reduce((acc, transfer) => {
       return acc + transfer.amount
     }, 0)
+  })
+
+  // Get transfer incomes
+  const income = computed(() => {
+    return transfers.value
+      .filter((transfer) => transfer.amount > 0)
+      .reduce((acc, transfer) => {
+        return acc + transfer.amount
+      }, 0)
+      .toFixed(2)
+  })
+
+  // Get transfer outgoings
+  const outgoings = computed(() => {
+    return transfers.value
+      .filter((transfer) => transfer.amount < 0)
+      .reduce((acc, transfer) => {
+        return acc + transfer.amount
+      }, 0)
+      .toFixed(2)
   })
 </script>
