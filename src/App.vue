@@ -3,24 +3,26 @@
   <div class="container">
     <Balance />
     <IncomeOutgoings />
-    <TransfersList />
+    <TransfersList :transfers="transfers" />
     <AddTransfer />
   </div>
 </template>
 
-<script>
+<script setup>
   import Header from './components/Header.vue'
   import Balance from './components/Balance.vue'
   import IncomeOutgoings from './components/IncomeOutgoings.vue'
   import TransfersList from './components/TransfersList.vue'
   import AddTransfer from './components/AddTransfer.vue'
-  export default {
-    components: {
-      Header,
-      Balance,
-      IncomeOutgoings,
-      TransfersList,
-      AddTransfer
-    }
-  }
+
+  import { ref } from 'vue'
+
+  const transfers = ref([
+    { id: 1, name: 'Cristiano Ronaldo', amount: 100000000.0 },
+    { id: 2, name: 'Lionel Messi', amount: -120500000.0 },
+    { id: 3, name: 'Neymar Jr.', amount: 150250000.0 },
+    { id: 4, name: 'Kylian Mbappe', amount: -180750000.99 },
+    { id: 5, name: 'Kevin De Bruyne', amount: 90000000.0 },
+    { id: 6, name: 'Virgil van Dijk', amount: -85000000.69 }
+  ])
 </script>
