@@ -6,7 +6,6 @@
       :income="parseFloat(income)"
       :outgoings="parseFloat(outgoings)"
     />
-
     <TransfersList :transfers="transfers" />
     <AddTransfer @transferSubmitted="handleTransferSubmitted" />
   </div>
@@ -20,6 +19,9 @@
   import AddTransfer from './components/AddTransfer.vue'
 
   import { ref, computed, defineEmits } from 'vue'
+  import { useToast } from 'vue-toastification'
+
+  const toast = useToast()
 
   const transfers = ref([
     { id: 1, name: 'Cristiano Ronaldo', amount: 100000000.0 },
@@ -59,6 +61,17 @@
 
   // Add transfers
   const handleTransferSubmitted = (transferHistoryData) => {
-    console.log(transferHistoryData)
+    transfers.value.push({
+      id: generateUniqueId(),
+      name: transferHistoryData.player,
+      amount: transferHistoryData.amount
+    })
+
+    toast.success('Transfer has been successfully added')
+  }
+
+  // Generate ID
+  const generateUniqueId = () => {
+    return Math.floor(Math.random() * 1000000)
   }
 </script>
