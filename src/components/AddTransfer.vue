@@ -27,19 +27,27 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, defineEmits } from 'vue'
   import { useToast } from 'vue-toastification'
 
   const player = ref('')
   const amount = ref('')
   const toast = useToast()
+  const emit = defineEmits(['transferSubmitted'])
 
   const onSubmit = () => {
     if (!player.value || !amount.value) {
       toast.error('Please complete both fields')
       return
     }
-    console.log(player.value, amount.value)
+
+    const transferHistoryData = {
+      player: player.value,
+      amount: parseFloat(amount.value)
+    }
+
+    emit('transferSubmitted', transferHistoryData)
+
     player.value = ''
     amount.value = ''
   }

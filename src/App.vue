@@ -2,9 +2,13 @@
   <Header />
   <div class="container">
     <Balance :total="total" />
-    <IncomeOutgoings :income="income" :outgoings="outgoings" />
+    <IncomeOutgoings
+      :income="parseFloat(income)"
+      :outgoings="parseFloat(outgoings)"
+    />
+
     <TransfersList :transfers="transfers" />
-    <AddTransfer />
+    <AddTransfer @transferSubmitted="handleTransferSubmitted" />
   </div>
 </template>
 
@@ -15,7 +19,7 @@
   import TransfersList from './components/TransfersList.vue'
   import AddTransfer from './components/AddTransfer.vue'
 
-  import { ref, computed } from 'vue'
+  import { ref, computed, defineEmits } from 'vue'
 
   const transfers = ref([
     { id: 1, name: 'Cristiano Ronaldo', amount: 100000000.0 },
@@ -33,17 +37,13 @@
     }, 0)
   })
 
-  // Get transfer incomes
+  // Get transfer income
   const income = computed(() => {
     return transfers.value
       .filter((transfer) => transfer.amount > 0)
       .reduce((acc, transfer) => {
         return acc + transfer.amount
       }, 0)
-      .toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      })
   })
 
   // Get transfer outgoings
@@ -53,9 +53,12 @@
       .reduce((acc, transfer) => {
         return acc + transfer.amount
       }, 0)
-      .toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      })
   })
+
+  const emit = defineEmits(['transferSubmitted'])
+
+  // Add transfers
+  const handleTransferSubmitted = (transferHistoryData) => {
+    console.log(transferHistoryData)
+  }
 </script>
