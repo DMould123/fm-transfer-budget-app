@@ -21,19 +21,20 @@
   import TransfersList from './components/TransfersList.vue'
   import AddTransfer from './components/AddTransfer.vue'
 
-  import { ref, computed, defineEmits } from 'vue'
+  import { ref, computed, defineEmits, onMounted } from 'vue'
   import { useToast } from 'vue-toastification'
 
   const toast = useToast()
 
-  const transfers = ref([
-    { id: 1, name: 'Cristiano Ronaldo', amount: 100000000.0 },
-    { id: 2, name: 'Lionel Messi', amount: -120500000.0 },
-    { id: 3, name: 'Neymar Jr.', amount: 150250000.0 },
-    { id: 4, name: 'Kylian Mbappe', amount: -180750000.99 },
-    { id: 5, name: 'Kevin De Bruyne', amount: 90000000.0 },
-    { id: 6, name: 'Virgil van Dijk', amount: -85000000.69 }
-  ])
+  const transfers = ref([])
+
+  onMounted(() => {
+    const savedTransfersHistory = JSON.parse(localStorage.getItem('transfers'))
+
+    if (savedTransfersHistory) {
+      transfers.value = savedTransfersHistory
+    }
+  })
 
   // Get total transfers
   const total = computed(() => {
@@ -70,6 +71,8 @@
       amount: transferHistoryData.amount
     })
 
+    saveTransfersToLocalStorage()
+
     toast.success('Transfer has been successfully added')
   }
 
@@ -82,6 +85,13 @@
   const handleTransferDeleted = (id) => {
     transfers.value = transfers.value.filter((transfer) => transfer.id !== id)
 
+    saveTransfersToLocalStorage()
+
     toast.success('This transfer has been deleted')
+  }
+
+  // Save to localStorage
+  const saveTransfersToLocalStorage = () => {
+    localStorage.setItem('transfers', JSON.stringify(transfers.value))
   }
 </script>
