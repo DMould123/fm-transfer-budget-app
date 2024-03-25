@@ -6,7 +6,10 @@
       :income="parseFloat(income)"
       :outgoings="parseFloat(outgoings)"
     />
-    <TransfersList :transfers="transfers" />
+    <TransfersList
+      :transfers="transfers"
+      @transferDeleted="handleTransferDeleted"
+    />
     <AddTransfer @transferSubmitted="handleTransferSubmitted" />
   </div>
 </template>
@@ -73,5 +76,12 @@
   // Generate ID
   const generateUniqueId = () => {
     return Math.floor(Math.random() * 1000000)
+  }
+
+  // Delete transfer
+  const handleTransferDeleted = (id) => {
+    transfers.value = transfers.value.filter((transfer) => transfer.id !== id)
+
+    toast.success('This transfer has been deleted')
   }
 </script>

@@ -6,7 +6,7 @@
     </div>
     <div>
       <h4>Outgoings</h4>
-      <p id="money-minus" class="money minus">-£{{ props.outgoings }}</p>
+      <p id="money-minus" class="money minus">£{{ props.outgoings }}</p>
     </div>
   </div>
 </template>
