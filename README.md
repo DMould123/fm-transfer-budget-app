@@ -1,7 +1,43 @@
-# Vue 3 + Vite
+# [DM Transfer-Budget-App ] 🦁 👑
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Description 🌍
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+## Objectives 🎯
+
+The objectives of the [App Name ] project include:
+
+- 
+- 
+- 
+
+- 
+## Tech Stack 💻
+
+- 
+- 
+-
+- 
+
+## Installation 🔧
+
+To use this app, simply clone the repository to your local machine.
+
+
+```bash
+git clone 
+cd 
+```
+
+## Features ✨
+
+- 
+
+## License 📝
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Author 📚
+
+- David Mould
+
