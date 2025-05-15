@@ -27,28 +27,28 @@
 </template>
 
 <script setup>
-  import { ref, defineEmits } from 'vue'
-  import { useToast } from 'vue-toastification'
+import { ref, defineEmits } from "vue";
+import { useToast } from "vue-toastification";
 
-  const player = ref('')
-  const amount = ref('')
-  const toast = useToast()
-  const emit = defineEmits(['transferSubmitted'])
+const player = ref("");
+const amount = ref("");
+const toast = useToast();
+const emit = defineEmits(["transferSubmitted"]);
 
-  const onSubmit = () => {
-    if (!player.value || !amount.value) {
-      toast.error('Please complete both fields')
-      return
-    }
-
-    const transferHistoryData = {
-      player: player.value,
-      amount: parseFloat(amount.value)
-    }
-
-    emit('transferSubmitted', transferHistoryData)
-
-    player.value = ''
-    amount.value = ''
+const onSubmit = () => {
+  if (!player.value || !amount.value || isNaN(amount.value)) {
+    toast.error("Please complete both fields with valid values");
+    return;
   }
+
+  const transferHistoryData = {
+    player: player.value,
+    amount: parseFloat(amount.value),
+  };
+
+  emit("transferSubmitted", transferHistoryData);
+
+  player.value = "";
+  amount.value = "";
+};
 </script>
